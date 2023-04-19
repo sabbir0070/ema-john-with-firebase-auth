@@ -5,6 +5,8 @@ import { AuthContext } from '../../Proveders/AuthProviders';
 const Login = () => {
 const [error, setError] = useState('');
 const [success, setSuccess] = useState('');
+const [show, setShow] = useState(false)
+
 const navigate = useNavigate();
 const location = useLocation();
 console.log(location)
@@ -44,8 +46,14 @@ setError(error.message)
                 </div>
                 <div className='form-control'>
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder='Your password' required />
-                </div>
+                    <input type={show ? "text": 'password'} name="password" id="password" placeholder='Your password' required />
+                < p onClick={()=>setShow(!show)}><small>
+{
+show? <span>Hide password</span> : <span>Show password</span>
+}
+</small></p>
+
+</div>
                 <input className='btn-submit' type="submit" value='Login' />
                 <p><Link to="/signup">New Sign Up? Please Sign Up</Link></p>
                 <p><span>{error}</span></p>            
